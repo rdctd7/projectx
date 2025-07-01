@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>plotform | A Manifesto</title>
+    <meta name="description" content="A declaration that your relationship with film & TV should be a story, not a score. If you agree, join us.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🟡</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet"></noscript>
+
+    <style>
+        :root {
+            --bg-color: #0A0C10; 
+            --primary-text: #e6edf3;
+            --secondary-text: #8b949e; 
+            --accent-color: #facc15;
+            --accent-hover: #f59e0b;
+            --border-color: #30363d;
+            --form-bg: #161b22;
+            --focus-shadow: rgba(250, 204, 21, 0.2);
+            --hover-shadow: rgba(250, 204, 21, 0.15);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        *, *::before, *::after { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--primary-text);
+            display: flex;
+            justify-content: center;
+            padding: 4rem 1rem;
+            background-image: radial-gradient(circle at 50% 0%, rgba(22, 27, 34, 0.5), transparent 50%);
+            min-height: 100vh;
+        }
+
+        .container { 
+            max-width: 600px; 
+            width: 100%; 
+            text-align: center; 
+        }
+
+        header h1 { 
+            font-size: 2.25rem; 
+            font-weight: 800; 
+            letter-spacing: -0.05em; 
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        header .logo-icon { 
+            font-size: 2rem; 
+            line-height: 1; 
+            color: var(--accent-color); 
+        }
+
+        header .subtitle { 
+            font-size: clamp(1.25rem, 5vw, 1.5rem); 
+            color: var(--primary-text); 
+            margin: 0.75rem auto 0; 
+            line-height: 1.5; 
+            max-width: 500px; 
+            font-weight: 700; 
+        }
+
+        header .philosophy { 
+            color: var(--secondary-text); 
+            margin: 1.5rem auto 5rem; 
+            max-width: 480px; 
+            font-size: 1.1rem; 
+            line-height: 1.7; 
+        }
+
+        .journey { 
+            text-align: left; 
+            position: relative; 
+            padding-inline-start: 2rem; 
+        }
+
+        .journey::before { 
+            content: ''; 
+            position: absolute; 
+            inset-inline-start: 5px; 
+            top: 10px; 
+            bottom: 10px; 
+            width: 2px; 
+            background: linear-gradient(to bottom, var(--accent-color) 0%, var(--border-color) 75%); 
+            border-radius: 1px;
+        }
+
+        .step { 
+            position: relative; 
+            margin-bottom: 3.5rem; 
+        }
+
+        .step::before { 
+            content: '◎'; 
+            position: absolute; 
+            inset-inline-start: -40px; 
+            top: -2px; 
+            font-size: 1.5rem; 
+            line-height: 1; 
+            color: var(--secondary-text); 
+            background-color: var(--bg-color); 
+            padding: 0 4px; 
+        }
+
+        .step.final::before { 
+            content: '🟡'; 
+            color: var(--accent-color); 
+            inset-inline-start: -42px;
+        }
+
+        .step h3 { 
+            font-size: 1.1rem; 
+            font-weight: 700; 
+            color: var(--primary-text); 
+            line-height: 1.4; 
+        }
+        
+        .step p { 
+            font-size: 1rem; 
+            line-height: 1.7; 
+            color: var(--secondary-text); 
+            margin-top: 0.25rem; 
+        }
+        
+        .final-ask { 
+            margin-top: 4rem; 
+            background-color: var(--form-bg); 
+            border: 1px solid var(--border-color); 
+            border-radius: 12px; 
+            padding: 2.5rem 2rem; 
+            text-align: center; 
+        }
+        
+        .final-ask h2 { 
+            font-size: clamp(1.5rem, 6vw, 1.75rem); 
+            font-weight: 700; 
+            line-height: 1.4; 
+            color: var(--primary-text); 
+            max-width: 450px; 
+            margin: 0 auto 1.5rem; 
+        }
+
+        .final-ask p { 
+            color: var(--secondary-text); 
+            margin-bottom: 2rem; 
+            line-height: 1.7; 
+        }
+
+        #signup-form { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 1rem; 
+            max-width: 400px; 
+            margin: 0 auto; 
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        #signup-form input[type="email"] { 
+            padding: 0.85rem 1rem; 
+            font-size: 1rem; 
+            border-radius: 8px; 
+            border: 1px solid var(--border-color); 
+            background-color: var(--bg-color); 
+            color: var(--primary-text); 
+            text-align: center; 
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        
+        #signup-form input[type="email"]:focus { 
+            outline: none; 
+            border-color: var(--accent-color); 
+            box-shadow: 0 0 0 4px var(--focus-shadow); 
+        }
+        
+        #signup-form button { 
+            padding: 0.85rem 1.5rem; 
+            font-size: 1rem; 
+            font-weight: 700; 
+            border-radius: 8px; 
+            border: none; 
+            background-color: var(--accent-color); 
+            color: #0A0C10; 
+            cursor: pointer; 
+            transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease; 
+        }
+        
+        #signup-form button:hover:not(:disabled) { 
+            background-color: var(--accent-hover); 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 15px var(--hover-shadow); 
+        }
+
+        #signup-form button:focus-visible {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+
+        #success-message { 
+            text-align: center; 
+            font-size: 1.1rem; 
+            line-height: 1.6; 
+            color: var(--primary-text); 
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        #success-message .icon { 
+            font-size: 2rem; 
+            margin-bottom: 1rem; 
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <header>
+            <h1><span class="logo-icon" aria-hidden="true">🟡</span>plotform</h1>
+            <p class="subtitle">Your relationship with art is a story. Not a score.</p>
+            <p class="philosophy">You're told to rate, to rank, to perform your taste for a public feed. This reduces your experience to a data point. We believe your perspective is too valuable for that.</p>
+        </header>
+
+        <section class="journey" aria-label="Our Philosophy">
+            <div class="step">
+                <h3>Your curiosity is a private garden, not a public backlog.</h3>
+                <p>Because you shouldn't feel guilty about what you haven't seen. A quiet, zero-anxiety space to gather your interests without the pressure of keeping up.</p>
+            </div>
+            <div class="step">
+                <h3>Your reflection is a living narrative, not a static rating.</h3>
+                <p>Because memory fades and perspectives change. A journal to see how your thoughts evolve when you revisit a piece months, or even years, later.</p>
+            </div>
+            <div class="step final">
+                <h3>Your taste is a private map of you, not a public trophy case.</h3>
+                <p>Because some moments are more than just favorites—they're foundational. A way to distinguish fleeting feelings from the stories that truly define who you are.</p>
+            </div>
+        </section>
+        
+        <section class="final-ask" id="signup-section">
+            <h2>If you believe this, we're building plotform for you.</h2>
+            <p>There is no product yet—only this conviction. We are gathering a small founding group to help bring this idea to life. If you've read this far and felt a sense of recognition, we want you with us.</p>
+            
+            <form id="signup-form" name="early-access" method="POST" data-netlify="true">
+                <label for="email" class="sr-only">Your email address</label>
+                <input type="email" id="email" name="email" placeholder="Your email address" required autocomplete="email">
+                <button type="submit">I'm In</button>
+            </form>
+        </section>
+    </main>
+
+    <template id="success-template">
+        <div id="success-message" role="status">
+            <div class="icon" aria-hidden="true">✨</div>
+            You're in. Welcome to the beginning.
+        </div>
+    </template>
+
+    <script>
+        const signupForm = document.getElementById('signup-form');
+        
+        signupForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            const submitButton = form.querySelector('button');
+
+            submitButton.disabled = true;
+            submitButton.textContent = 'Joining...';
+
+            try {
+                const response = await fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(formData).toString(),
+                });
+
+                if (response.ok) {
+                    const signupSection = document.getElementById('signup-section');
+                    const successTemplate = document.getElementById('success-template');
+                    const successNode = successTemplate.content.cloneNode(true);
+                    signupSection.innerHTML = '';
+                    signupSection.appendChild(successNode);
+                } else {
+                    throw new Error('Form submission failed.');
+                }
+            } catch (error) {
+                console.error('Submission error:', error);
+                alert('There was an error submitting the form. Please try again.');
+                submitButton.disabled = false;
+                submitButton.textContent = "I'm In";
+            }
+        });
+    </script>
+</body>
+</html>
