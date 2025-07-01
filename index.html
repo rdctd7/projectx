@@ -5,23 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>plotform | A Manifesto</title>
-    <meta name="description" content="A declaration that your relationship with film & TV should be a story, not a score. If you agree, join us.">
-    <meta name="theme-color" content="#0A0C10">
-    <link rel="canonical" href="https://plotform.app/manifesto">
+    <meta name="description" content="A declaration that your relationship with art should be a story, not a score. If you agree, we're building this for you.">
 
-    <meta property="og:title" content="plotform | A Manifesto">
-    <meta property="og:description" content="Your relationship with art is a story. Not a score.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://plotform.app/manifesto">
-    <meta property="og:image" content="https://plotform.app/og-image.png">
-    
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="plotform | A Manifesto">
-    <meta name="twitter:description" content="Your relationship with art is a story. Not a score.">
-    <meta name="twitter:image" content="https://plotform.app/og-image.png">
-
+    <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🟡</text></svg>">
 
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -29,6 +18,7 @@
 
     <style>
         :root {
+            /* Color Palette reflects a calm, focused, and introspective mood */
             --bg-color: #0A0C10; 
             --primary-text: #e6edf3;
             --secondary-text: #8b949e; 
@@ -38,6 +28,7 @@
             --form-bg: #161b22;
             --focus-shadow: rgba(250, 204, 21, 0.2);
             --hover-shadow: rgba(250, 204, 21, 0.15);
+            --error-text: #fda4af; /* For gentler error feedback */
         }
 
         @keyframes fadeIn {
@@ -67,6 +58,7 @@
             display: flex;
             justify-content: center;
             padding: 4rem 1rem;
+            /* A subtle gradient to create depth without distraction */
             background-image: radial-gradient(circle at 50% 0%, rgba(22, 27, 34, 0.5), transparent 50%);
             min-height: 100vh;
         }
@@ -92,7 +84,7 @@
             color: var(--accent-color); 
         }
 
-        header .subtitle { 
+        .subtitle { 
             font-size: clamp(1.25rem, 5vw, 1.5rem); 
             color: var(--primary-text); 
             margin: 0.75rem auto 0; 
@@ -101,21 +93,23 @@
             font-weight: 700; 
         }
 
-        header .philosophy { 
+        .philosophy-intro { 
             color: var(--secondary-text); 
             margin: 1.5rem auto 5rem; 
             max-width: 480px; 
             font-size: 1.1rem; 
             line-height: 1.7; 
         }
-
-        .journey { 
+        
+        /* The <article> tag semantically represents the manifesto as a self-contained work */
+        .manifesto-article {
             text-align: left; 
             position: relative; 
             padding-inline-start: 2rem; 
         }
 
-        .journey::before { 
+        /* The timeline visualizes the "narrative" and "journey" over time */
+        .manifesto-article::before { 
             content: ''; 
             position: absolute; 
             inset-inline-start: 5px; 
@@ -126,12 +120,12 @@
             border-radius: 1px;
         }
 
-        .step { 
+        .principle { 
             position: relative; 
             margin-bottom: 3.5rem; 
         }
 
-        .step::before { 
+        .principle::before { 
             content: '◎'; 
             position: absolute; 
             inset-inline-start: -40px; 
@@ -143,27 +137,21 @@
             padding: 0 4px; 
         }
 
-        .step.final::before { 
-            content: '🟡'; 
-            color: var(--accent-color); 
-            inset-inline-start: -42px;
-        }
-
-        .step h3 { 
+        .principle h2 { 
             font-size: 1.1rem; 
             font-weight: 700; 
             color: var(--primary-text); 
             line-height: 1.4; 
         }
         
-        .step p { 
+        .principle p { 
             font-size: 1rem; 
             line-height: 1.7; 
             color: var(--secondary-text); 
             margin-top: 0.25rem; 
         }
         
-        .final-ask { 
+        .final-cta { 
             margin-top: 4rem; 
             background-color: var(--form-bg); 
             border: 1px solid var(--border-color); 
@@ -172,7 +160,7 @@
             text-align: center; 
         }
         
-        .final-ask h2 { 
+        .final-cta h3 { 
             font-size: clamp(1.5rem, 6vw, 1.75rem); 
             font-weight: 700; 
             line-height: 1.4; 
@@ -181,16 +169,16 @@
             margin: 0 auto 1.5rem; 
         }
 
-        .final-ask p { 
-            color: var(--secondary-text); 
-            margin-bottom: 2rem; 
+        .final-cta p { 
+            color: var(--secondary-text);
             line-height: 1.7; 
         }
-
+        
+        /* Form is designed for simplicity and focus */
         #signup-form { 
             display: flex; 
             flex-direction: column; 
-            gap: 1rem; 
+            gap: 0rem; 
             max-width: 400px; 
             margin: 0 auto; 
         }
@@ -207,8 +195,9 @@
             border-width: 0;
         }
 
-        #signup-form input[type="email"] { 
+        #email-input { 
             padding: 0.85rem 1rem; 
+            margin-top: 2rem;
             font-size: 1rem; 
             border-radius: 8px; 
             border: 1px solid var(--border-color); 
@@ -220,13 +209,13 @@
             appearance: none;
         }
         
-        #signup-form input[type="email"]:focus { 
+        #email-input:focus { 
             outline: none; 
             border-color: var(--accent-color); 
             box-shadow: 0 0 0 4px var(--focus-shadow); 
         }
         
-        #signup-form button { 
+        #signup-button { 
             padding: 0.85rem 1.5rem; 
             font-size: 1rem; 
             font-weight: 700; 
@@ -238,15 +227,27 @@
             transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease; 
         }
         
-        #signup-form button:hover:not(:disabled) { 
+        #signup-button:hover:not(:disabled) { 
             background-color: var(--accent-hover); 
             transform: translateY(-2px); 
             box-shadow: 0 4px 15px var(--hover-shadow); 
         }
 
-        #signup-form button:focus-visible {
+        #signup-button:focus-visible {
             outline: 2px solid var(--accent-color);
             outline-offset: 2px;
+        }
+
+        /* Non-jarring error message style, aligning with "zero-anxiety" principle */
+        .form-feedback {
+            min-height: 1.6em; /* Prevent layout shift */
+            font-size: 0.9rem;
+            color: var(--secondary-text);
+            animation: fadeIn 0.3s ease-out;
+        }
+        .form-feedback.error {
+            color: var(--error-text);
+            font-weight: 500;
         }
 
         #success-message { 
@@ -269,40 +270,50 @@
         <header>
             <h1><span class="logo-icon" aria-hidden="true">🟡</span>plotform</h1>
             <p class="subtitle">Your relationship with art is a story. Not a score.</p>
-            <p class="philosophy">You're told to rate, to rank, to perform your taste for a public feed. This reduces your experience to a data point. We believe your perspective is too valuable for that.</p>
+            <p class="philosophy-intro">Most platforms ask you to rate, rank, and perform your taste for a public feed. This reduces your experience to a data point. We believe your perspective is too valuable for that. Our approach is guided by four principles.</p>
         </header>
 
-        <section class="journey" aria-label="Our Philosophy">
-            <div class="step">
-                <h3>Your curiosity is a private garden, not a public backlog.</h3>
-                <p>Because you shouldn't feel guilty about what you haven't seen. A quiet, zero-anxiety space to gather your interests without the pressure of keeping up.</p>
+        <!-- The manifesto is presented as an <article>, a self-contained narrative. -->
+        <!-- Each <div> is a clear "principle" that maps directly to the core philosophy. -->
+        <article class="manifesto-article" aria-labelledby="manifesto-heading">
+            <!-- Hidden heading for accessibility and semantic structure -->
+            <h2 id="manifesto-heading" class="sr-only">Our Four Principles</h2>
+            
+            <div class="principle">
+                <h2>Prioritize Self-Reflection Over Social Performance</h2>
+                <p>Some moments are more than just favorites—they're foundational. Our goal is to help you understand your own taste through a private map of the stories that define who you are, away from the pressure of a public trophy case.</p>
             </div>
-            <div class="step">
-                <h3>Your reflection is a living narrative, not a static rating.</h3>
-                <p>Because memory fades and perspectives change. A journal to see how your thoughts evolve when you revisit a piece months, or even years, later.</p>
+            <div class="principle">
+                <h2>Honor the Ebb and Flow of Curiosity</h2>
+                <p>You shouldn't feel guilty about what you haven't seen. We're creating a quiet, zero-anxiety space to gather your interests as they change, without the pressure of a public backlog or the fear of "keeping up."</p>
             </div>
-            <div class="step final">
-                <h3>Your taste is a private map of you, not a public trophy case.</h3>
-                <p>Because some moments are more than just favorites—they're foundational. A way to distinguish fleeting feelings from the stories that truly define who you are.</p>
+            <div class="principle">
+                <h2>Capture the Narrative, Not Just the Data Point</h2>
+                <p>Memory fades and perspectives change. A rating is static, but a reflection is alive. We provide a journal to see how your thoughts evolve when you revisit a piece months, or even years, later.</p>
             </div>
-        </section>
+            <div class="principle">
+                <h2>Facilitate Connection Through Generativity</h2>
+                <p>Community shouldn't be about follower counts. It should be built on the generative act of sharing. We're designing a space for thoughtful exchange, where you can share insights and receive suggestions that truly resonate.</p>
+            </div>
+        </article>
         
-        <section class="final-ask" id="signup-section">
-            <h2>If you believe this, we're building plotform for you.</h2>
+        <section class="final-cta" id="signup-section">
+            <h3>If you believe this, we're building plotform for you.</h3>
             <p>There is no product yet—only this conviction. We are gathering a small founding group to help bring this idea to life. If you've read this far and felt a sense of recognition, we want you with us.</p>
             
-                  
-<form id="signup-form" name="early-access" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" netlify>
-    <input type="hidden" name="form-name" value="early-access" />
+            <form id="signup-form" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" netlify>
+                <input type="hidden" name="form-name" value="early-access" />
+                <div class="sr-only">
+                    <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+                </div>
+            
+                <label for="email-input" class="sr-only">Your email address</label>
+                <input type="email" id="email-input" name="email" placeholder="Your email address" required autocomplete="email">
+                
+                <p class="form-feedback" id="form-feedback-message" role="alert"></p>
 
-    <p class="sr-only">
-        <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
-    </p>
-
-    <label for="email" class="sr-only">Your email address</label>
-    <input type="email" id="email" name="email" placeholder="Your email address" required autocomplete="email">
-    <button type="submit">I'm In</button>
-</form>
+                <button type="submit" id="signup-button">I'm In</button>
+            </form>
         </section>
     </main>
 
@@ -315,15 +326,20 @@
 
     <script>
     const signupForm = document.getElementById('signup-form');
+    const formFeedback = document.getElementById('form-feedback-message');
     
     signupForm.addEventListener('submit', async (event) => {
         event.preventDefault();
+
         const form = event.target;
         const formData = new FormData(form);
-        const submitButton = form.querySelector('button');
+        const submitButton = document.getElementById('signup-button');
 
+        // Provide immediate feedback, aligning with a respectful user experience
         submitButton.disabled = true;
         submitButton.textContent = 'Joining...';
+        formFeedback.textContent = '';
+        formFeedback.classList.remove('error');
 
         try {
             const response = await fetch(form.action, {
@@ -333,21 +349,27 @@
             });
 
             if (response.ok) {
+                // On success, replace the form with a confirmation
                 const signupSection = document.getElementById('signup-section');
                 const successTemplate = document.getElementById('success-template');
                 const successNode = successTemplate.content.cloneNode(true);
-                signupSection.innerHTML = '';
+                signupSection.innerHTML = ''; // Clear the section
                 signupSection.appendChild(successNode);
             } else {
-                throw new Error('Form submission failed.');
+                // If the server responds with an error
+                throw new Error('Something went wrong. Please try again.');
             }
         } catch (error) {
+            // Handle network errors or server errors gracefully
             console.error('Submission error:', error);
-            alert('There was an error submitting the form. Please try again.');
+            formFeedback.textContent = error.message;
+            formFeedback.classList.add('error');
+            
+            // Re-enable the form for another attempt
             submitButton.disabled = false;
             submitButton.textContent = "I'm In";
         }
     });
-</script>
+    </script>
 </body>
 </html>
