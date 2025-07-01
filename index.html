@@ -6,6 +6,20 @@
     
     <title>plotform | A Manifesto</title>
     <meta name="description" content="A declaration that your relationship with film & TV should be a story, not a score. If you agree, join us.">
+    <meta name="theme-color" content="#0A0C10">
+    <link rel="canonical" href="https://plotform.app/manifesto">
+
+    <meta property="og:title" content="plotform | A Manifesto">
+    <meta property="og:description" content="Your relationship with art is a story. Not a score.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://plotform.app/manifesto">
+    <meta property="og:image" content="https://plotform.app/og-image.png">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="plotform | A Manifesto">
+    <meta name="twitter:description" content="Your relationship with art is a story. Not a score.">
+    <meta name="twitter:image" content="https://plotform.app/og-image.png">
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🟡</text></svg>">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -277,17 +291,18 @@
             <h2>If you believe this, we're building plotform for you.</h2>
             <p>There is no product yet—only this conviction. We are gathering a small founding group to help bring this idea to life. If you've read this far and felt a sense of recognition, we want you with us.</p>
             
-            <form id="signup-form" name="early-access" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
-                <input type="hidden" name="form-name" value="early-access" />
-            
-                <p class="sr-only">
-                    <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
-                </p>
-            
-                <label for="email" class="sr-only">Your email address</label>
-                <input type="email" id="email" name="email" placeholder="Your email address" required autocomplete="email">
-                <button type="submit">I'm In</button>
-            </form>
+                  
+<form id="signup-form" name="early-access" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="early-access" />
+
+    <p class="sr-only">
+        <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+    </p>
+
+    <label for="email" class="sr-only">Your email address</label>
+    <input type="email" id="email" name="email" placeholder="Your email address" required autocomplete="email">
+    <button type="submit">I'm In</button>
+</form>
         </section>
     </main>
 
@@ -299,40 +314,40 @@
     </template>
 
     <script>
-        const signupForm = document.getElementById('signup-form');
-        
-        signupForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const form = event.target;
-            const formData = new FormData(form);
-            const submitButton = form.querySelector('button');
+    const signupForm = document.getElementById('signup-form');
+    
+    signupForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const formData = new FormData(form);
+        const submitButton = form.querySelector('button');
 
-            submitButton.disabled = true;
-            submitButton.textContent = 'Joining...';
+        submitButton.disabled = true;
+        submitButton.textContent = 'Joining...';
 
-            try {
-                const response = await fetch('/', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams(formData).toString(),
-                });
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(formData).toString(),
+            });
 
-                if (response.ok) {
-                    const signupSection = document.getElementById('signup-section');
-                    const successTemplate = document.getElementById('success-template');
-                    const successNode = successTemplate.content.cloneNode(true);
-                    signupSection.innerHTML = '';
-                    signupSection.appendChild(successNode);
-                } else {
-                    throw new Error('Form submission failed.');
-                }
-            } catch (error) {
-                console.error('Submission error:', error);
-                alert('There was an error submitting the form. Please try again.');
-                submitButton.disabled = false;
-                submitButton.textContent = "I'm In";
+            if (response.ok) {
+                const signupSection = document.getElementById('signup-section');
+                const successTemplate = document.getElementById('success-template');
+                const successNode = successTemplate.content.cloneNode(true);
+                signupSection.innerHTML = '';
+                signupSection.appendChild(successNode);
+            } else {
+                throw new Error('Form submission failed.');
             }
-        });
-    </script>
+        } catch (error) {
+            console.error('Submission error:', error);
+            alert('There was an error submitting the form. Please try again.');
+            submitButton.disabled = false;
+            submitButton.textContent = "I'm In";
+        }
+    });
+</script>
 </body>
 </html>
